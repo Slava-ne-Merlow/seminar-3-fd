@@ -16,7 +16,7 @@ fun maxNBelow(limit: Int): Int {
     var answer = 0
 
     for (i in 1..10_000) {
-        if (transform(i) < limit){
+        if (transform(i) < limit) {
             answer = i
         }
     }
