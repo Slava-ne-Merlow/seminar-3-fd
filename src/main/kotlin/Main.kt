@@ -6,6 +6,21 @@ import seminar.task03.TravelCard
 // Например: import seminar.task04.CourierDelivery
 
 fun main() {
+     val N=readln()
+     N.toString(2)
+     String b="00"
+    String c="11"
+    if (N%2==0){
+        N+=b
+
+    } else{
+        N+=c
+
+    }
+    N.toString(10)
+    println(N)
+
+
     println("Здесь можно вызывать функции и классы из заданий.")
 
     // Раскомментируйте нужный вызов после реализации функции.
