@@ -1,7 +1,10 @@
 package seminar.task01
 
 fun transform(n: Int): Int {
-    TODO("Преобразуйте двоичную запись числа")
+    val str : String
+    if (n % 2 == 0) { str = n.toString(2) + "00" }
+    else { str = n.toString(2) + "00" }
+    return str.toInt(2)
 }
 
 fun maxNBelow(limit: Int): Int {
