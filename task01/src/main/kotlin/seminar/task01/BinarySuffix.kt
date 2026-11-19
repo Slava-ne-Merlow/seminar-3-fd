@@ -1,9 +1,20 @@
 package seminar.task01
 
 fun transform(n: Int): Int {
-    TODO("Преобразуйте двоичную запись числа")
+    var k = n.toString(2)
+    if (n % 2 == 0) {
+        k += "00"
+    } else {
+        k += "11"
+    }
+    return k.toInt(2)
 }
 
 fun maxNBelow(limit: Int): Int {
     TODO("Найдите максимальное N, для которого R < limit")
+    var k = 0
+    for (i in limit downTo 1) {
+
+    }
+    transform(k)
 }
