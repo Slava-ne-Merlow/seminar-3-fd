@@ -1,9 +1,21 @@
 package seminar.task01
 
 fun transform(n: Int): Int {
-    TODO("Преобразуйте двоичную запись числа")
+    var s = Integer.toBinaryString(n)
+    if (n % 2 == 0) {
+        s += "00"
+    } else {
+        s += "11"
+    }
+    return Integer.parseInt(s, 2)
 }
 
 fun maxNBelow(limit: Int): Int {
-    TODO("Найдите максимальное N, для которого R < limit")
+    var ans = 0
+    for (i in 1..10000) {
+        if (transform(i) < limit) {
+            ans = i
+        }
+    }
+    return ans
 }
