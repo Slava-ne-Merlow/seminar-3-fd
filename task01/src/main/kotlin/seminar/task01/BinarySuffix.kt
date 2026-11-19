@@ -2,7 +2,7 @@ package seminar.task01
 
 fun transform(n: Int): Int {
     var s = n.toString(radix = 2)
-    if (n % 2 == 0){
+    if (n % 2 == 0) {
         s += "00"
     } else {
         s += "11"
@@ -11,5 +11,12 @@ fun transform(n: Int): Int {
 }
 
 fun maxNBelow(limit: Int): Int {
-    TODO("Найдите максимальное N, для которого R < limit")
+    var answer = 0
+    for (i in 1..10000){
+        if (transform(i) < limit){
+            answer = i
+        }
+    }
+    return answer
 }
+
