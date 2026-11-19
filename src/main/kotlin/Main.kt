@@ -6,20 +6,28 @@ import seminar.task03.TravelCard
 // Например: import seminar.task04.CourierDelivery
 
 fun main() {
-     val N=readln()
-     N.toString(2)
-     String b="00"
-    String c="11"
-    if (N%2==0){
-        N+=b
 
-    } else{
-        N+=c
+    class TravelCard(initialTrips: Int) {
+        var remainingTrips: Int = initialTrips
+            private set
 
+        init {
+            require(initialTrips >= 0)
+
+        fun topUp(trips: Int) {
+            require(trips > 0)
+            remainingTrips += trips
+        }
+
+        fun ride(): Boolean {
+            if (remainingTrips > 0) {
+                remainingTrips--
+                return true
+            }
+            return false
+        }
     }
-    N.toString(10)
-    println(N)
-
+        }
 
     println("Здесь можно вызывать функции и классы из заданий.")
 
