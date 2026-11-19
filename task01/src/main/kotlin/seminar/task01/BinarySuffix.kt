@@ -13,5 +13,5 @@ fun maxNBelow(limit: Int): Int {
     while(transform(a) < limit) {
         a++
     }
-    return a
+    return a - 1
 }
