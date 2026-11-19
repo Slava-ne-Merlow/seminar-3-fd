@@ -13,17 +13,17 @@ fun transform(n: Int): Int{
 }
 
 fun maxNBelow(limit: Int): Int {
-    TODO("Найдите максимальное N, для которого R < limit")
     var a=0
-    for(n in 1..10000){
-        if(transform(n)<limit){
-            a=transform(n)
+    for(i in 1..10000){
+        if(transform(i)<limit){
+            a=i
         }
     }
     return a
 }
 
-fun main(){
-
-    println(maxNBelow(40000))
-}
+//fun main(){
+//    val lim =readln().toInt()
+//    val n=readln().toInt()
+//    println(maxNBelow(lim,n))
+//}
