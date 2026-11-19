@@ -9,9 +9,11 @@ fun transform(n: Int): Int {
 }
 
 fun maxNBelow(limit: Int): Int {
-    var a : Int = 0
-    while(transform(a) < limit) {
-        a++
+
+    for (a in 0..10000) {
+        if(transform(a) >= limit) {
+            return a - 1
+        }
     }
-    return a - 1
+    return 0
 }
