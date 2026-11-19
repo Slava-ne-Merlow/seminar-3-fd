@@ -9,5 +9,9 @@ fun transform(n: Int): Int {
 }
 
 fun maxNBelow(limit: Int): Int {
-    TODO("Найдите максимальное N, для которого R < limit")
+    var a : Int = 0
+    while(transform(a) < limit) {
+        a++
+    }
+    return a
 }
