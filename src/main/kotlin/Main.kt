@@ -13,5 +13,5 @@ fun main() {
     // println(transformTask02(131))
 
 
-    // println(card.remainingTrips)
+
 }
