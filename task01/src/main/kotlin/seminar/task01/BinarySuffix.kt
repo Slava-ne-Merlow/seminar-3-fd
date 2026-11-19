@@ -4,6 +4,7 @@ fun transform(n: Int): Int {
     var s = n.toString(2)
 
     if (n%2 == 0) {
+
         s+="00"
     } else {
         s+="11"
