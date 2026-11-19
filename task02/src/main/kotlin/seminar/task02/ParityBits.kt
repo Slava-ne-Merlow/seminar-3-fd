@@ -17,7 +17,7 @@ fun transform(n: Int): Int {
 fun minNAbove(limit: Int): Int {
     for(i in 0..10000) {
         if(transform(i) > limit) {
-            return i - 1
+            return i
         }
     }
     return -1
