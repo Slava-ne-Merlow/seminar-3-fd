@@ -1,7 +1,6 @@
 package seminar.task01
 
-fun transform(n: Int): Int {
-    TODO("Преобразуйте двоичную запись числа")
+fun transform(n: Int): Int{
     var s = n.toString(2)
 
     if(n%2==0){
@@ -14,7 +13,6 @@ fun transform(n: Int): Int {
 }
 
 fun maxNBelow(limit: Int): Int {
-    TODO("Найдите максимальное N, для которого R < limit")
     var a=0
     for(i in 1..10000){
         if(transform(i)<limit){
