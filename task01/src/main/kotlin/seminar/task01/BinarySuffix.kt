@@ -17,6 +17,6 @@ fun maxNBelow(limit: Int): Int {
         if (transform(n = i) < limit){
             answer = i
         }
-        return answer
     }
+    return answer
 }
