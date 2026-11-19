@@ -12,6 +12,6 @@ fun main() {
     println(transformTask01(129))
     // println(transformTask02(131))
 
-    // val card = TravelCard(2
+
     // println(card.remainingTrips)
 }
