@@ -6,7 +6,9 @@ fun transform(n: Int): Int {
     for(i in binN) {
         s += i.digitToInt()
     }
+
     binN += (s % 2).toString()
+    s = 0
     for(i in binN) {
         s += i.digitToInt()
     }
