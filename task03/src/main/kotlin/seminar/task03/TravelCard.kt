@@ -10,7 +10,7 @@ class TravelCard(initialTrips: Int) {
 
     fun topUp(trips: Int) {
         require(trips > 0)
-        remainingTrips = remainingTrips + trips
+        remainingTrips += trips
     }
 
     fun ride(): Boolean {
