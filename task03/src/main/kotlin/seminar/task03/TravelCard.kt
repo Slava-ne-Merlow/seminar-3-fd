@@ -14,7 +14,7 @@ class TravelCard(initialTrips: Int) {
     }
 
     fun ride(): Boolean {
-        if (remainingTrips == 0) {
+        if (remainingTrips <= 0) {
             return false
         }
         remainingTrips--
