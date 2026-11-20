@@ -4,7 +4,8 @@ fun transform(n: Int): Int {
     var s = Integer.toBinaryString(n)
     if (n % 2 == 0) {
         s += "00"
-    } else {
+    }
+    else {
         s += "11"
     }
     return Integer.parseInt(s, 2)
