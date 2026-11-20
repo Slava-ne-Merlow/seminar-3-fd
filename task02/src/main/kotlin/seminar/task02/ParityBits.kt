@@ -1,9 +1,21 @@
 package seminar.task02
 
 fun transform(n: Int): Int {
-    TODO("Дважды добавьте бит по сумме цифр текущей записи")
+    var s: String = Integer.toBinaryString(n)
+    var s1 = 0
+    for (c in s) if (c == '1') s1++
+    if (s1 % 2 == 0) {
+        s += "00"
+    }
+    else {
+        s += "10"
+    }
+    return Integer.parseInt(s, 2)
 }
 
 fun minNAbove(limit: Int): Int {
-    TODO("Найдите минимальное N, для которого R > limit")
+    for (i in 1..10000) {
+        if (transform(i) > limit) return i
+    }
+    return -1
 }
