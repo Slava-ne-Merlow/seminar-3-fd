@@ -14,4 +14,5 @@ fun main() {
     // val card = TravelCard(2)
     // println(card.ride())
     // println(card.remainingTrips)
+    println("hi")
 }
