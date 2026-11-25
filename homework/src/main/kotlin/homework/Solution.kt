@@ -8,7 +8,11 @@ enum class Genre(val label: String) {
 
 object LibraryRules {
     fun loanDays(genre: Genre): Int {
-        TODO()
+        return when (genre) {
+            Genre.FANTASY -> 21
+            Genre.ADVENTURE -> 14
+            Genre.SCIENCE -> 7
+        }
     }
 }
 
@@ -22,15 +26,28 @@ class Book(
         private set
 
     init {
-        TODO()
+        require(id > 0)
+        require(title.isNotBlank())
+        require(author.isNotBlank())
     }
 
     fun borrow(): Boolean {
-        TODO()
+        if (isAvailable) {
+            isAvailable = false
+            return true
+        }
+        return false
     }
 
     fun returnToLibrary(): Boolean {
-        TODO()
+        if (isAvailable) {
+            return false
+        }
+        isAvailable = true
+        return true
+    }
+    fun BookInfo(): BookInfo {
+        return BookInfo(title, author, genre)
     }
 }
 
@@ -38,28 +55,72 @@ interface Notifier {
     fun send(message: String)
 }
 
+class ConsoleNotifier() : Notifier {
+    override fun send(message: String) {
+        println(message)
+    }
+}
+
+class CountingNotifier() : Notifier {
+    var sentCount: Int = 0
+        private set
+    var lastMessage: String = ""
+        private set
+    override fun send(message: String) {
+        sentCount++
+        lastMessage = message
+    }
+}
+
 class Library(private val books: Array<Book>, private val notifier: Notifier) {
     fun hasBook(id: Int): Boolean {
-        TODO()
+        for (book in books) {
+            if (book.id ==  id) return true
+        }
+        return false
     }
 
     fun borrowBook(id: Int): Boolean {
-        TODO()
+        if (!hasBook(id)) return false
+        if (!books[id].borrow()) return false
+        println("Выдана книга: ${books[id].title}")
+        return true
     }
 
     fun returnBook(id: Int): Boolean {
-        TODO()
+        if (!hasBook(id)) return false
+        if (!books[id].returnToLibrary()) return false
+        println("Возвращена книга: ${books[id].title}")
+        return true
     }
 
     fun availableCount(): Int {
-        TODO()
+        var count: Int = 0
+        for (book in books) {
+            if (book.isAvailable) count++
+        }
+        return count
     }
 
     fun countByGenre(genre: Genre): Int {
-        TODO()
+        var count: Int = 0
+        for (book in books) {
+            if (book.genre == genre) count++
+        }
+        return count
     }
 
     fun report(): String {
-        TODO()
+        var str: String = ""
+        for (book in books) {
+            str += "${book.id}. ${book.title} — ${book.author}: " +
+                    "${if (book.isAvailable) "доступна" else "выдана"}\n"
+        }
+        return str
     }
 }
+data class BookInfo(
+    val title: String,
+    val author: String,
+    val genre: Genre
+)
