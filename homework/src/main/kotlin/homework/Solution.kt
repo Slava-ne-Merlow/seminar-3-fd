@@ -114,6 +114,7 @@ class Library(private val books: Array<Book>, private val notifier: Notifier) {
         for (book in books) {
             if (book.genre == genre) count++
         }
+
         return count
     }
 
