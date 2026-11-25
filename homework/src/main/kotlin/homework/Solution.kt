@@ -22,13 +22,11 @@ class Book(
 ) {
     var isAvailable: Boolean = true
         private set
-
     init {
         require(id > 0)
         require(title.isNotBlank())
         require(author.isNotBlank())
     }
-
     fun borrow(): Boolean {
         if(isAvailable){
             isAvailable = false
@@ -36,7 +34,6 @@ class Book(
         }
         return false
     }
-
     fun returnToLibrary(): Boolean {
         if(!isAvailable){
             isAvailable = true
@@ -87,7 +84,7 @@ class Library(private val books: Array<Book>, private val notifier: Notifier) {
             if (book.id == id) {
                 val success = book.borrow()
                 if (success) {
-                    notifier.send("Выдана книга: „${book.title}“")
+                    notifier.send("Выдана книга: ${book.title}")
                 }
                 return success
             }
@@ -100,7 +97,7 @@ class Library(private val books: Array<Book>, private val notifier: Notifier) {
             if (book.id == id) {
                 val success = book.returnToLibrary()
                 if (success) {
-                    notifier.send("Возвращена книга: „${book.title}“")
+                    notifier.send("Возвращена книга: ${book.title}")
                 }
                 return success
             }
@@ -128,7 +125,11 @@ class Library(private val books: Array<Book>, private val notifier: Notifier) {
         if (books.size == 0) return "Библиотека пуста"
         var result = ""
         for (b in books) {
-            val status = if (b.isAvailable) "доступна" else "выдана"
+            val status = if (b.isAvailable){
+                "доступна"
+            } else{
+                "выдана"
+            }
             if (result != "") result += "\n"
             result += "${b.id}. ${b.title} — ${b.author}: $status"
         }
