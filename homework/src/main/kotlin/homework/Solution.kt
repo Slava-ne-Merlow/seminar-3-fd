@@ -120,7 +120,7 @@ class Library(private val books: Array<Book>, private val notifier: Notifier) {
         var result = ""
         for (i in books.indices) {
             val book = books[i]
-            val status = if (book.isAvailable) "Available" else "Not Available"
+            val status = if (book.isAvailable) "доступна" else "выдана"
             result += "${book.id}. ${book.title} - ${book.author}: $status"
             if (i < books.size - 1) result += "\n"
         }
