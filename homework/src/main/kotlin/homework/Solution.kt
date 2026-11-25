@@ -20,6 +20,11 @@ data class BookInfo(
     val genre: Genre,
 )
 
+    fun loanDays(genre: Genre): Int {
+        TODO()
+    }
+}
+
 class Book(
     val id: Int,
     val title: String,
@@ -52,6 +57,16 @@ class Book(
     }
 
     fun info(): BookInfo = BookInfo(title, author, genre)
+        TODO()
+    }
+
+    fun borrow(): Boolean {
+        TODO()
+    }
+
+    fun returnToLibrary(): Boolean {
+        TODO()
+    }
 }
 
 interface Notifier {
@@ -74,6 +89,29 @@ class CountingNotifier : Notifier {
     override fun send(message: String) {
         sentCount += 1
         lastMessage = message
+class Library(private val books: Array<Book>, private val notifier: Notifier) {
+    fun hasBook(id: Int): Boolean {
+        TODO()
+    }
+
+    fun borrowBook(id: Int): Boolean {
+        TODO()
+    }
+
+    fun returnBook(id: Int): Boolean {
+        TODO()
+    }
+
+    fun availableCount(): Int {
+        TODO()
+    }
+
+    fun countByGenre(genre: Genre): Int {
+        TODO()
+    }
+
+    fun report(): String {
+        TODO()
     }
 }
 
