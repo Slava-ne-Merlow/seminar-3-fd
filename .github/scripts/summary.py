@@ -6,6 +6,7 @@ from pathlib import Path
 from xml.etree import ElementTree as ET
 
 TITLES = {
+    "homework": "Домашняя работа · Открытые тесты",
     "task01": "01 · Два дополнительных разряда",
     "task02": "02 · Биты чётности",
     "task03": "03 · Проездной",
@@ -18,7 +19,7 @@ def render(module, directory, test_exit_code="0"):
     files = sorted(directory.glob("TEST-*.xml"))
     lines = [TITLES[module], ""]
     if not files:
-        if module in {"task04", "task05"}:
+        if module in {"task04", "task05", "homework"}:
             lines += ["В этой задаче классы нужно написать с нуля. Пока типы из условия не созданы, тесты не компилируются.", ""]
         return "\n".join(lines + [
             "Тесты не запустились.",
@@ -71,7 +72,7 @@ def render(module, directory, test_exit_code="0"):
 
 def main():
     if len(sys.argv) != 2 or sys.argv[1] not in TITLES:
-        raise SystemExit("Укажите задачу: task01 … task05")
+        raise SystemExit("Укажите задачу: task01 … task05 или homework")
     module = sys.argv[1]
     text, success = render(module, Path(module, "build/test-results/test"), os.environ.get("TEST_EXIT_CODE", "0"))
     print(text, end="")
