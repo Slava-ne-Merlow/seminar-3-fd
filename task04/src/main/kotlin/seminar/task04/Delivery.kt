@@ -12,7 +12,7 @@ abstract class Delivery(
 
     fun label(weightKg: Int): String {
         val price = cost(weightKg)
-        return "Доставка в $destination: $price"
+        return "Доставка в $destination: $price руб."
     }
 }
 
