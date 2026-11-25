@@ -151,9 +151,9 @@ class Library(private val books: Array<Book>, private val notifier: Notifier) {
             result += "${book.id}. ${book.title} — ${book.author}: "
 
             if (book.isAvailable) {
-                result += "Доступна"
+                result += "доступна"
             } else {
-                result += "Выдана"
+                result += "выдана"
             }
         }
 
