@@ -117,6 +117,7 @@ class Library(private val books: Array<Book>, private val notifier: Notifier) {
         return count
     }
 
+
     fun report(): String {
         if (books.isEmpty() == true) return "Библиотека пуста"
         var availability = ""
