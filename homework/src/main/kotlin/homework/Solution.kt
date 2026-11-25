@@ -8,9 +8,9 @@ enum class Genre(val label: String) {
 
 object LibraryRules {
     fun loanDays(genre: Genre): Int = when (genre) {
-        (Genre.ADVENTURE) -> 14
-        (Genre.FANTASY) -> 21
-        (Genre.SCIENCE) -> 7
+        Genre.ADVENTURE -> 14
+        Genre.FANTASY -> 21
+        Genre.SCIENCE -> 7
 
     }
 }
@@ -71,6 +71,7 @@ class CountingNotifier : Notifier{
 }
 class Library(private val books: Array<Book>, private val notifier: Notifier) {
     fun hasBook(id: Int): Boolean {
+        if (id <= 0) return false
         for (book in books) {
             if (id == book.id) return true
         }
@@ -123,9 +124,10 @@ class Library(private val books: Array<Book>, private val notifier: Notifier) {
         var availability = ""
         for (i in books.indices) {
             val book = books[i]
+            if (i > 0) availability += "\n"
             availability += "${book.id}. ${book.title} — ${book.author}:"
-            if (book.isAvailable == true) availability += " доступна\n"
-            else availability += " выдана\n"
+            if (book.isAvailable == true) availability += " доступна"
+            else availability += " выдана"
         }
         return availability
     }
