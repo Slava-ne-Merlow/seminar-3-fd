@@ -1,25 +1,18 @@
 package seminar.task01
 
 fun transform(n: Int): Int {
-    var s = n.toString(2)
-
+    var k = n.toString(2)
     if (n % 2 == 0) {
-        s += "00"
+        k += "00"
     } else {
-        s += "11"
+        k += "11"
     }
-
-    return s.toInt(2)
+    return k.toInt(2)
 }
 
 fun maxNBelow(limit: Int): Int {
-    var answer = 0
-
-    for (i in 1..10_000) {
-        if (transform(i) < limit){
-            answer = i
-        }
+    for (i in limit downTo 1) {
+        if (transform(i) < limit) return i
     }
-
-    return answer
+    return 0
 }

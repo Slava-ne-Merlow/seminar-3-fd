@@ -1,24 +1,24 @@
 package seminar.task03
 
-class TravelCard(initialTrips: Int) {
+class TravelCard(val initialTrips: Int) {
     var remainingTrips: Int = initialTrips
         private set
 
     init {
-        require(initialTrips  >= 0)
+        require(remainingTrips > 0)
     }
 
-    fun topUp(trips: Int){
+    fun topUp(trips: Int) {
         require(trips > 0)
         remainingTrips += trips
     }
 
     fun ride(): Boolean {
-        if (remainingTrips == 0){
+        --remainingTrips
+        if (remainingTrips >= 0) return true
+        else {
+            remainingTrips = 0
             return false
         }
-
-        remainingTrips--
-        return true
     }
 }
