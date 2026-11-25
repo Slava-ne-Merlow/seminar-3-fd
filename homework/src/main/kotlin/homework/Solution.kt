@@ -1,5 +1,7 @@
 package homework
 
+fun sum(a: Int, b: Int): Int {
+    return a+b
 enum class Genre(val label: String) {
     FANTASY("Фэнтези"),
     ADVENTURE("Приключения"),
