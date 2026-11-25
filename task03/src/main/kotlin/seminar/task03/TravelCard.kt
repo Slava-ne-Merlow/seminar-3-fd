@@ -5,19 +5,20 @@ class TravelCard(initialTrips: Int) {
         private set
 
     init {
-        require(remainingTrips > 0)
+        require(initialTrips  >= 0)
     }
 
-    fun topUp(trips: Int) {
+    fun topUp(trips: Int){
         require(trips > 0)
-        remainingTrips = trips
+        remainingTrips += trips
     }
 
     fun ride(): Boolean {
-        if (remainingTrips > 0) {
-            remainingTrips -= 1
-            return true
+        if (remainingTrips == 0){
+            return false
         }
-        return false
+
+        remainingTrips--
+        return true
     }
 }
