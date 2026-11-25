@@ -8,7 +8,11 @@ enum class Genre(val label: String) {
 
 object LibraryRules {
     fun loanDays(genre: Genre): Int {
-        TODO()
+        return when (genre) {
+            Genre.FANTASY -> 21
+            Genre.SCIENCE -> 7
+            Genre.ADVENTURE -> 14
+        }
     }
 }
 
@@ -22,44 +26,124 @@ class Book(
         private set
 
     init {
-        TODO()
+        require(id>0)
+        require(title.isNotBlank())
+        require(author.isNotBlank())
     }
 
     fun borrow(): Boolean {
-        TODO()
+        if (isAvailable==false) {
+            return false
+        }
+        isAvailable=false
+        return true
+
     }
 
     fun returnToLibrary(): Boolean {
-        TODO()
+        if (isAvailable) {
+            return false
+        }
+        isAvailable=true
+        return true
+    }
+    fun info(): BookInfo{
+        return BookInfo(this.title,this.author,this.genre)
     }
 }
+
+data class BookInfo(
+    val title: String,
+    val author: String,
+    val genre: Genre,
+)
 
 interface Notifier {
     fun send(message: String)
 }
+class ConsoleNotifier : Notifier {
+    override fun send(message: String) {
+        println(message)
+    }
+}
+
+class CountingNotifier : Notifier {
+    var sentCount: Int = 0
+    private set
+    var lastMessage: String = ""
+    private set
+    override fun send(message: String) {
+        sentCount++
+        lastMessage = message
+    }
+}
+
 
 class Library(private val books: Array<Book>, private val notifier: Notifier) {
     fun hasBook(id: Int): Boolean {
-        TODO()
+        for (book in books) {
+            if (book.id == id) {
+                return true
+            }
+        }
+        return false
     }
 
     fun borrowBook(id: Int): Boolean {
-        TODO()
+        for (book in books) {
+            if (book.id == id && book.borrow()) {
+                notifier.send("Выдана книга: ${book.title}")
+                return true
+            }
+        }
+        return false
     }
 
     fun returnBook(id: Int): Boolean {
-        TODO()
+        for (book in books) {
+            if (book.id == id && book.returnToLibrary()) {
+                notifier.send("Возвращена книга: ${book.title}")
+                return true
+            }
+        }
+        return false
     }
 
     fun availableCount(): Int {
-        TODO()
+        var count = 0
+        for (book in books) {
+            if (book.isAvailable) {
+                count++
+            }
+        }
+        return count
     }
 
     fun countByGenre(genre: Genre): Int {
-        TODO()
+        var countGenre = 0
+        for (book in books) {
+            if (book.genre == genre) {
+                countGenre++
+            }
+        }
+        return countGenre
     }
 
     fun report(): String {
-        TODO()
+        if (books.isEmpty()) {
+            return "Библиотека пуста"
+        }
+
+        var result = ""
+        for (book in books) {
+            if (result.isNotEmpty()) {
+                result += "\n"
+            }
+
+            val status = if (book.isAvailable) "доступна" else "выдана"
+            result += "${book.id}. ${book.title} — ${book.author}: $status"
+        }
+
+        return result
     }
 }
