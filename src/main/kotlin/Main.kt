@@ -6,5 +6,6 @@ import seminar.task03.TravelCard
 // Например: import seminar.task04.CourierDelivery
 
 fun main() {
-    println("hi")
+    print("hi")
+
 }

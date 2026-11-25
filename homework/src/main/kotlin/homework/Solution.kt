@@ -82,14 +82,23 @@ class Library(private val books: Array<Book>, private val notifier: Notifier) {
 
     fun borrowBook(id: Int): Boolean {
         if (!hasBook(id)) return false
-        if (!books[id].borrow()) return false
-        println("Выдана книга: ${books[id].title}")
+        for (book in books) {
+            if (book.id == id){
+                if (!book.borrow()) return false
+                else println("Выдана книга: ${book.title}")
+            }
+        }
         return true
     }
 
     fun returnBook(id: Int): Boolean {
         if (!hasBook(id)) return false
-        if (!books[id].returnToLibrary()) return false
+        for (book in books) {
+            if (book.id == id){
+                if (!book.returnToLibrary()) return false
+                else println("Возвращена книга: ${book.title}")
+            }
+        }
         println("Возвращена книга: ${books[id].title}")
         return true
     }
