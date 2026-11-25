@@ -65,7 +65,7 @@ class CountingNotifier : Notifier{
     var lastMessage: String =""
         private set
     override fun send(message: String) {
-        sentCount = sentCount+1
+        sentCount++
         lastMessage = message
     }
 }
@@ -82,9 +82,11 @@ class Library(private val books: Array<Book>, private val notifier: Notifier) {
         if (id <= 0) return false
         for (book in books) {
             if (id == book.id) {
-                if (book.borrow() == false) return false
-                notifier.send("Выдана книга: $book.title")
-                return true
+                if (book.borrow() == true) {
+                    notifier.send("Выдана книга: $book.title")
+                    return true
+                }
+                return false
             }
         }
         return false
@@ -94,9 +96,10 @@ class Library(private val books: Array<Book>, private val notifier: Notifier) {
         if (id <= 0) return false
         for (book in books) {
             if (id == book.id) {
-                if (book.returnToLibrary() == false) return false
+                if (book.returnToLibrary() == true){
                 notifier.send("Возвращена книга: $book.title")
-                return true
+                return true}
+                return false
             }
         }
         return false
