@@ -5,24 +5,24 @@ abstract class Delivery(val destination: String) {
         require(destination.isNotBlank())
     }
 
-    abstract fun cost(weightHg: Int): Int
+    abstract fun cost(weightKg: Int): Int
     fun label(weightKg: Int): String {
         val price = cost(weightKg)
-        return "Доставка в $destination: $price"
+        return "Доставка в $destination: $price руб."
     }
 }
 
 class Pickup(destination: String) : Delivery(destination) {
-    override fun cost(weightHg: Int): Int {
-        require(weightHg > 0)
+    override fun cost(weightKg: Int): Int {
+        require(weightKg > 0)
         return 0
     }
 }
 
 class CourierDelivery(destination: String) : Delivery(destination) {
-    override fun cost(weightHg: Int): Int {
-        require(weightHg > 0)
-        return 300 + 50 * weightHg
+    override fun cost(weightKg: Int): Int {
+        require(weightKg > 0)
+        return 200 + 50 * weightKg
     }
 }
 
@@ -30,8 +30,8 @@ class ExpressDelivery(destination: String, val distanceKm: Int) : Delivery(desti
     init {
         require(distanceKm > 0)
     }
-    override fun cost(weightHg: Int): Int {
-        require(weightHg in 1..10)
-        return 300 + 80 * weightHg + 20 * distanceKm
+    override fun cost(weightKg: Int): Int {
+        require(weightKg in 1..10)
+        return 300 + 80 * weightKg + 20 * distanceKm
     }
 }

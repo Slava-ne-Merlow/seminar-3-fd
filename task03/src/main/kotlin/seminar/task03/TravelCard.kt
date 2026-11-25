@@ -1,18 +1,24 @@
 package seminar.task03
 
-class TravelCard(initialTrips: Int) {
+class TravelCard(val initialTrips: Int) {
     var remainingTrips: Int = initialTrips
         private set
 
     init {
-        // TODO: проверьте начальное число поездок.
+        require(remainingTrips > 0)
     }
 
     fun topUp(trips: Int) {
-        TODO("Проверьте аргумент и пополните карту")
+        require(trips > 0)
+        remainingTrips += trips
     }
 
     fun ride(): Boolean {
-        TODO("Спишите одну поездку, если она есть")
+        --remainingTrips
+        if (remainingTrips >= 0) return true
+        else {
+            remainingTrips = 0
+            return false
+        }
     }
 }
