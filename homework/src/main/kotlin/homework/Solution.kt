@@ -99,7 +99,6 @@ class Library(private val books: Array<Book>, private val notifier: Notifier) {
                 else println("Возвращена книга: ${book.title}")
             }
         }
-        println("Возвращена книга: ${books[id].title}")
         return true
     }
 

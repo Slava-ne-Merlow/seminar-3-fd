@@ -4,7 +4,8 @@ fun main() {
     // Раскомментируйте после создания ConsoleNotifier и реализации методов.
 
     val book = Book(1, "Хоббит", "Джон Толкин")
-    val library = Library(arrayOf(book), ConsoleNotifier())
+    val book2 = Book(1000, "Хоббит?", "Челик")
+    val library = Library(arrayOf(book, book2), ConsoleNotifier())
 
     println(library.borrowBook(1))
 
