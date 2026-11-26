@@ -5,20 +5,14 @@ class TravelCard(initialTrips: Int) {
         private set
 
     init {
-        require(initialTrips  >= 0)
+        // TODO: проверьте начальное число поездок.
     }
 
-    fun topUp(trips: Int){
-        require(trips > 0)
-        remainingTrips += trips
+    fun topUp(trips: Int) {
+        TODO("Проверьте аргумент и пополните карту")
     }
 
     fun ride(): Boolean {
-        if (remainingTrips == 0){
-            return false
-        }
-
-        remainingTrips--
-        return true
+        TODO("Спишите одну поездку, если она есть")
     }
 }

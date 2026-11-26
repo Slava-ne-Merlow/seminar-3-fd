@@ -7,8 +7,10 @@ enum class Genre(val label: String) {
 }
 
 object LibraryRules {
-    fun loanDays(genre: Genre): Int {
-        TODO()
+    fun loanDays(genre: Genre): Int = when (genre) {
+        Genre.FANTASY -> 21
+        Genre.SCIENCE -> 7
+        Genre.ADVENTURE -> 14
     }
 }
 
@@ -22,44 +24,77 @@ class Book(
         private set
 
     init {
-        TODO()
+        require(id>0)
+        require(title.isNotBlank())
+        require(author.isNotBlank())
     }
 
     fun borrow(): Boolean {
-        TODO()
+        if(!isAvailable) return false
+        isAvailable = false
+        return true
     }
 
     fun returnToLibrary(): Boolean {
-        TODO()
+        if(isAvailable) return false
+        isAvailable = true
+        return true
+    }
+    fun info():BookInfo{
+        return BookInfo(title, author, genre)
     }
 }
+
+data class BookInfo(val title: String, val author: String, val genre: Genre)
+
+
+
 
 interface Notifier {
     fun send(message: String)
 }
 
+class ConsoleNotifier : Notifier {
+    override fun send(message: String) = println(message)
+}
+
+class CountingNotifier : Notifier {
+    var sentCount: Int =0
+    private set
+    var lastMessage: String = ""
+    private set
+
+    override fun send(message: String) {
+        sentCount = sentCount + 1
+        lastMessage = message
+    }
+}
+
+
+
+
 class Library(private val books: Array<Book>, private val notifier: Notifier) {
     fun hasBook(id: Int): Boolean {
-        TODO()
+        return books.any { it.id == id }
     }
 
     fun borrowBook(id: Int): Boolean {
-        TODO()
+        return false
     }
 
     fun returnBook(id: Int): Boolean {
-        TODO()
+        return false
     }
 
     fun availableCount(): Int {
-        TODO()
+        return 0
     }
 
     fun countByGenre(genre: Genre): Int {
-        TODO()
+        return books.count { it.genre == genre }
     }
 
     fun report(): String {
-        TODO()
+        return "Total Books: ${books.size}"
     }
 }
