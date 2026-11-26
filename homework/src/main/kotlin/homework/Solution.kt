@@ -5,7 +5,6 @@ enum class Genre(val label: String) {
     ADVENTURE("Приключения"),
     SCIENCE("Наука")
 }
-
 object LibraryRules {
     fun loanDays(genre: Genre): Int {
         return when (genre) {
