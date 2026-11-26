@@ -85,10 +85,13 @@ class Library(private val books: Array<Book>, private val notifier: Notifier) {
         for (book in books) {
             if (book.id == id){
                 if (!book.borrow()) return false
-                else println("Выдана книга: ${book.title}")
+                else {
+                    println("Выдана книга: ${book.title}")
+                    return true
+                }
             }
         }
-        return true
+        return false
     }
 
     fun returnBook(id: Int): Boolean {
@@ -96,10 +99,13 @@ class Library(private val books: Array<Book>, private val notifier: Notifier) {
         for (book in books) {
             if (book.id == id){
                 if (!book.returnToLibrary()) return false
-                else println("Возвращена книга: ${book.title}")
+                else {
+                    println("Возвращена книга: ${book.title}")
+                    return true
+                }
             }
         }
-        return true
+        return false
     }
 
     fun availableCount(): Int {

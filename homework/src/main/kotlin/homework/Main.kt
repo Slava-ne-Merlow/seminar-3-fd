@@ -8,6 +8,7 @@ fun main() {
     val library = Library(arrayOf(book, book2), ConsoleNotifier())
 
     println(library.borrowBook(1))
-
+    println(library.returnBook(1))
+    println(library.returnBook(1))
     println(library.report())
 }
